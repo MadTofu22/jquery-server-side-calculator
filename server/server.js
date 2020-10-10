@@ -11,19 +11,26 @@ app.use(express.static('server/public'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-let historyArray = require('./modules/history');
 let calculate = require('./modules/calculator');
-const calculationHistory = require('./modules/history');
+let calcHistory = require('./modules/history');
+let lastCalculation = null;
+
+app.get('/history', (req, res) => {
+
+    console.log('hello from /history get');
+    res.send(calcHistory);
+});
 
 app.get('/calc', (req, res) => {
 
     console.log('hello from /calc get');
-    res.sendStatus(200);
+    res.send(lastCalculation);
 });
 
 app.post('/calc', (req, res) => {
 
-    console.log('hello from /calc post');
-    calculate(req.body);
+    console.log('hello from /calc post, req.body:', req.body);
     res.sendStatus(200);
+    lastCalculation = calculate(req.body);
+    calcHistory.push(lastCalculation);
 });

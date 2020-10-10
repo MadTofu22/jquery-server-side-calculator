@@ -14,6 +14,11 @@ function calculate () {
     
     console.log('calculate button has been clicked');
 
+    let leftOperand = $('#firstInput').val();
+    let rightOperand = $('#secondInput').val();
+    let operator = $('#operatorList').val();
+
+    console.log('left:', leftOperand, 'right:', rightOperand, 'operator', operator);
     // Connect to the /calc route on the server
     $.ajax({
         method: 'POST',

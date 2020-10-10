@@ -16,10 +16,10 @@ This is for planning the features this project needs and keeping track of what h
 * [ ] History list
 
 ### Back End
-* [ ] Receive input and operator from the client, POST
+* [X] Receive input and operator from the client, POST
 * [ ] Calculate math
-* [ ] Store previous calculations
-* [ ] Return the current calculation to the DOM, GET
+* [X] Store previous calculations
+* [X] Return the current calculation to the client
 
 ## Stretch Features:
 
