@@ -11,7 +11,7 @@ This is for planning the features this project needs and keeping track of what h
     * [X] Multiplication, *
     * [X] Division, /
 * [X] Submit button, =
-* [ ] Clear input field button, C
+* [X] Clear input field button, C
 * [ ] Result display
 * [ ] History list
 
