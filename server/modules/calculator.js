@@ -17,12 +17,11 @@
 // }
 
 // This function determines the calculation required based on the input operator, then passes the operands to proper function to conduct the math.
-let calculation (mathObj) {
-    let operator = mathObj.operator;
+function calculation (mathObj) {
     let resultObj = {};
     let result = null;
 
-    switch (operator) {
+    switch (mathObj.operator) {
         case '+':
             result = addition(mathObj.leftOperand, mathObj.rightOperand);
             break;
@@ -78,4 +77,4 @@ function newResultsObj (inputObj, result) {
     return newObj;
 }
 
-module.exports = calculation();
+module.exports = calculation;

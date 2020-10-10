@@ -13,10 +13,25 @@ function onReady () {
 function calculate () {
     
     console.log('calculate button has been clicked');
+
+    // Connect to the /calc route on the server
+    $.ajax({
+        method: 'POST',
+        url: '/calc',
+        data: {
+            leftOperand,
+            rightOperand,
+            operator,
+        }
+    }).then(response => {
+        console.log('resonse from /calc', response);
+    }).catch(error => {
+        alert(error);
+    });
 }
 
 // This function handles the click event for the clear input button
 function clear () {
 
     console.log('clear input button had been clicked');
-} 
+}
