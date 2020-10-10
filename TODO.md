@@ -4,13 +4,13 @@ This is for planning the features this project needs and keeping track of what h
 ## Main Features:
 
 ### Front End
-* [ ] 2 number input fields
-* [ ] Operator selectors
-    * [ ] Addition, +
-    * [ ] Subtraction, -
-    * [ ] Multiplication, *
-    * [ ] Division, /
-* [ ] Submit button, =
+* [X] 2 number input fields
+* [X] Operator selectors
+    * [X] Addition, +
+    * [X] Subtraction, -
+    * [X] Multiplication, *
+    * [X] Division, /
+* [X] Submit button, =
 * [ ] Clear input field button, C
 * [ ] Result display
 * [ ] History list
