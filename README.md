@@ -35,8 +35,8 @@ Please follow this flow to use this application.
 
 The results history will be displayed below the most recent result. This history is saved on the server. To clear the history you can:
 
-    - Select the [Clear] button.
-    - Turn off the server by entering `Ctl+C` in your terminal.
+- Select the [Clear] button.
+- Turn off the server by entering `Ctl+C` in your terminal.
 
 ## Built With
 This project was built using HTML, CSS, and JavaScript.

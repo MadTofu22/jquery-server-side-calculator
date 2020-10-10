@@ -6,10 +6,10 @@ This is for planning the features this project needs and keeping track of what h
 ### Front End
 * [ ] 2 number input fields
 * [ ] Operator selectors
-* [ ] Addition, +
-* [ ] Subtraction, -
-* [ ] Multiplication, *
-* [ ] Division, /
+    * [ ] Addition, +
+    * [ ] Subtraction, -
+    * [ ] Multiplication, *
+    * [ ] Division, /
 * [ ] Submit button, =
 * [ ] Clear input field button, C
 * [ ] Result display
