@@ -7,6 +7,7 @@ This project hopes to accomplish one thing, provide the user with a basic calcul
 On a deeper level this project is being developed by a student. In the past week I have learned how to use Node, Express with Body Parser, and Ajax. This project is a weekend challange designed to demonstrate these new skills, reinforce my understanding of JavaScript, HTML, CSS, Git, and further my knowledge base by learning how to deploy an app on Heroku.
 
 ## Screen Shot
+![Example of the Math Manipulator in use](https://github.com/MadTofu22/jquery-server-side-calculator/blob/master/images/MadTofu's%20Marvelous%20Math%20Manipulator%20Example.png)
 
 ### Prerequisites
 This poject uses the following software:
