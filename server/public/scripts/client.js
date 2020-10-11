@@ -18,7 +18,6 @@ function calculate () {
     let rightOperand = $('#secondInput').val();
     let operator = $('#operatorList').val();
 
-    console.log('left:', leftOperand, 'right:', rightOperand, 'operator', operator);
     // Connect to the /calc route on the server
     $.ajax({
         method: 'POST',
@@ -30,13 +29,39 @@ function calculate () {
         }
     }).then(response => {
         console.log('resonse from /calc', response);
+        getLastCalculation();
     }).catch(error => {
         alert(error);
     });
 }
 
-// This function handles the click event for the clear input button
+// This function handles the click event for the clear input button.
 function clear () {
 
     console.log('clear input button had been clicked');
+    $('.operand').val('');
+}
+
+// This function displays the result of the current calculation.
+function  displayResult (result) {
+
+    console.log('hello from displayResult');
+    $('#resultContainer').empty();
+    $('#resultContainer').append(`<h2>${result}</h2>`);
+}
+
+// This function gets the latest calculation from the server.
+function getLastCalculation () {
+
+    console.log('hello from getLastCalculation');
+
+    // Get the last calculation results from the /calc route on the server and display it to the DOM.
+    $.ajax({
+        method: 'GET',
+        url: '/calc'
+    }).then(response => {
+        displayResult(response.result);
+    }).catch(error => {
+        alert(error);
+    });
 }

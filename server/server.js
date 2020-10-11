@@ -29,8 +29,8 @@ app.get('/calc', (req, res) => {
 
 app.post('/calc', (req, res) => {
 
-    console.log('hello from /calc post, req.body:', req.body);
     res.sendStatus(200);
     lastCalculation = calculate(req.body);
     calcHistory.push(lastCalculation);
+    console.log('hello from /calc post, response:', lastCalculation);
 });

@@ -24,8 +24,6 @@ function calculation (mathObj) {
     let resultObj = {};
     let result = null;
 
-    console.log('first,', first, 'second,', second);
-
     switch (mathObj.operator) {
         case '+':
             result = addition(first, second);

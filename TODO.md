@@ -12,12 +12,12 @@ This is for planning the features this project needs and keeping track of what h
     * [X] Division, /
 * [X] Submit button, =
 * [X] Clear input field button, C
-* [ ] Result display
+* [X] Result display
 * [ ] History list
 
 ### Back End
 * [X] Receive input and operator from the client, POST
-* [ ] Calculate math
+* [X] Calculate math
 * [X] Store previous calculations
 * [X] Return the current calculation to the client
 
