@@ -18,21 +18,26 @@
 
 // This function determines the calculation required based on the input operator, then passes the operands to proper function to conduct the math.
 function calculation (mathObj) {
+    
+    let first = Number(mathObj.leftOperand);
+    let second = Number(mathObj.rightOperand);
     let resultObj = {};
     let result = null;
 
+    console.log('first,', first, 'second,', second);
+
     switch (mathObj.operator) {
         case '+':
-            result = addition(mathObj.leftOperand, mathObj.rightOperand);
+            result = addition(first, second);
             break;
         case '-':
-            result = subtraction(mathObj.leftOperand, mathObj.rightOperand);
+            result = subtraction(first, second);
             break;
-        case '+':
-            result = multiplication(mathObj.leftOperand, mathObj.rightOperand);
+        case '*':
+            result = multiplication(first, second);
             break;
-        case '+':
-            result = division(mathObj.leftOperand, mathObj.rightOperand);
+        case '/':
+            result = division(first, second);
             break;
         default:
             console.log('An invalid operator has gotten to calculation() in calulator.js');
