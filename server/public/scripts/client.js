@@ -5,6 +5,7 @@ function onReady () {
 
     console.log('jquery.js has been loaded');
     
+    updateHistory();
     $('#calculate').on('click', calculate);
     $('#clear').on('click', clear);
 }
@@ -29,7 +30,8 @@ function calculate () {
         }
     }).then(response => {
         console.log('resonse from /calc', response);
-        getLastCalculation();
+        displayResult();
+        updateHistory();
     }).catch(error => {
         alert(error);
     });
@@ -43,24 +45,45 @@ function clear () {
 }
 
 // This function displays the result of the current calculation.
-function  displayResult (result) {
+function addResultToDom (result) {
 
-    console.log('hello from displayResult');
+    console.log('hello from displayResult()');
     $('#resultContainer').empty();
     $('#resultContainer').append(`<h2>${result}</h2>`);
 }
 
 // This function gets the latest calculation from the server.
-function getLastCalculation () {
+function displayResult () {
 
-    console.log('hello from getLastCalculation');
+    console.log('hello from getLastCalculation()');
 
     // Get the last calculation results from the /calc route on the server and display it to the DOM.
     $.ajax({
         method: 'GET',
         url: '/calc'
     }).then(response => {
-        displayResult(response.result);
+        addResultToDom(response.result);
+    }).catch(error => {
+        alert(error);
+    });
+}
+
+// This function updates the history of all calculation made.
+function updateHistory () {
+
+    console.log('hello from updateHistory()');
+
+    // Get the history of all previous calculations from the server and display them to the DOM.
+    $.ajax({
+        method: 'GET',
+        url: '/history'
+    }).then(response => {
+        // Iterate through the response array and add the calculations to the DOM
+        $('#historyList').empty();
+        for (let calculation of response) {
+            $('#historyList').append(`
+                <li id="calc_${response.indexOf(calculation)}">${calculation.firstOperand} ${calculation.operator} ${calculation.secondOperand} = ${calculation.result}</li>`);
+        }
     }).catch(error => {
         alert(error);
     });

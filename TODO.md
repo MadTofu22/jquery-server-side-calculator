@@ -13,7 +13,7 @@ This is for planning the features this project needs and keeping track of what h
 * [X] Submit button, =
 * [X] Clear input field button, C
 * [X] Result display
-* [ ] History list
+* [X] History list
 
 ### Back End
 * [X] Receive input and operator from the client, POST
@@ -25,6 +25,6 @@ This is for planning the features this project needs and keeping track of what h
 
 * [ ] Change display to look like a physical calculator
 * [ ] Data Validation
-* [ ] clear history button, DELETE
+* [ ] Clear history button, DELETE
 * [ ] Click history to re-run calculation
 * [ ] Deploy to Heroku
