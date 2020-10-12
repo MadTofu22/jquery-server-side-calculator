@@ -5,6 +5,7 @@ $(onReady);
 let leftOperand = '';
 let rightOperand = '';
 let operator = '';
+let reranCalc = false;
 
 function onReady () {
 
@@ -18,6 +19,10 @@ function onReady () {
         
         console.log(button.target.id, 'has been clicked!');
         let number = button.target.id;
+        if (reranCalc){
+            $('#calcInput').val('');
+            reranCalc = false;
+        }
         currentInput = $('#calcInput').val();
         $('#calcInput').val(currentInput+number);
     });
@@ -88,6 +93,7 @@ function rerunCalc (id) {
     }).catch(error => {
         alert(error);
     });
+    reranCalc = true;
 }
 
 // This function handles the click event for the calculate button.
