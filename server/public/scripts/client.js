@@ -10,6 +10,7 @@ function onReady () {
 
     console.log('jquery.js has been loaded');
     
+    // Inital history load if the page was just refreshed.
     updateHistory();
     
     // This handles all of the numbers, and decimal point, and adds the clicked item to the calculaor input field.
@@ -29,8 +30,16 @@ function onReady () {
         getOperator(clickedOperator);
     });
 
+    // This handles the click event for the submit button, =.
     $('#calculate').on('click', calculate);
+
+    // This handles the click even for the clear input button.
     $('#clear').on('click', clear);
+
+    // This handles the click event for clearing results history.
+    $('#clearHistory').on('click', clearHistory);
+
+    // This handles the click even for allowing the user to click an equation in the history and re-run it.
 }
 
 // This function handles the click event for the calculate button.
@@ -101,8 +110,6 @@ function clear () {
 
     console.log('clear input button had been clicked');
     $('#calcInput').val('');
-
-    // Add DELETE request to remove the history.
 }
 
 // This function displays the result of the current calculation.
@@ -145,6 +152,21 @@ function updateHistory () {
             $('#historyList').append(`
                 <li id="calc_${response.indexOf(calculation)}">${calculation.firstOperand} ${calculation.operator} ${calculation.secondOperand} = ${calculation.result}</li>`);
         }
+    }).catch(error => {
+        alert(error);
+    });
+}
+
+// This function clears the history on the server and updates the history display.
+function clearHistory () {
+    
+    console.log('hello from clearHistory()');
+
+    $.ajax({
+        method: 'DELETE',
+        url: '/history'
+    }).then(response => {
+        updateHistory();
     }).catch(error => {
         alert(error);
     });
