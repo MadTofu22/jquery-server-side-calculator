@@ -55,6 +55,11 @@ function onReady () {
         } else if (operator == '/' && rightOperand == 0) {
             alert("Please don't divide by 0. That's mega uncouth.");
             $('#calcInput').val('');
+            leftOperand = '';
+            rightOperand = '';
+            operator = '';
+            $('.operatorInput').prop('disabled', false);
+            answerInCalc = false;
         } else {
             calculate();
         }
