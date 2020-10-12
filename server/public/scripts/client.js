@@ -1,13 +1,24 @@
 console.log('client.js has been loaded');
-$(onReady)
+$(onReady);
 
 function onReady () {
 
     console.log('jquery.js has been loaded');
     
     updateHistory();
+    $('.numInput').on('click', button => {
+        
+        console.log('ive been clicked! ID:', button.target.id);
+        let id = button.target.id;
+    })
     $('#calculate').on('click', calculate);
     $('#clear').on('click', clear);
+}
+
+// This function handles adding a number to the input field when a number is clicked.
+function addNumber (buttonID) {
+
+    console.log('hello from addNumber(), buttonID:', buttonID);
 }
 
 // This function handles the click event for the calculate button.
@@ -15,9 +26,9 @@ function calculate () {
     
     console.log('calculate button has been clicked');
 
-    let leftOperand = $('#firstInput').val();
-    let rightOperand = $('#secondInput').val();
-    let operator = $('#operatorList').val();
+    // let leftOperand = parseLeft($('#calcInput').val());
+    // let rightOperand = parseRight($('#calcInput').val());
+    // let operator = parseOperator($('#calcInput').val());
 
     // Connect to the /calc route on the server
     $.ajax({
@@ -87,4 +98,37 @@ function updateHistory () {
     }).catch(error => {
         alert(error);
     });
+}
+
+
+
+function parseLeft (inputString) {
+    
+    console.log('hello from parseLeft()');
+    let operandString = '';
+    let operatorFound = false;
+
+    // Iterate through the characters in the input string and store the number that comes before the operator into the operand string.
+    do {
+        let index = 0;
+        // Check if the current character is a math operator
+        if (inputString[index] === '+' || inputString[index] === '-' || inputString[index] === '*' || inputString[index] === '/') {
+            operatorFound = true;
+        } else {
+            console.log('inputString[index]', inputString[index]);
+            operandString += inputString[index];
+        }
+    } while (!operatorFound);
+    console.log('operatandString:', operandString);
+    return operandString;
+}
+
+function parseRight (inputString) {
+
+    console.log('hello from parseRight()');
+}
+
+function parseOperator (inputString) {
+    
+    console.log('hello from parseOperator()');
 }

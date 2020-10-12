@@ -10,24 +10,53 @@
     </head>
     <body>
         <h1>MadTofu's Marvelous Math Manipulator</h1>
-        <section id="calculator">
-            <label for="firstInput"></label>
-            <input type="number" name="firstInput" id="firstInput" class="operand">
-            <label for="operatorList"></label>
-            <select name="operatorList" id="operatorList">
-                <option value="+">Add</option>
-                <option value="-">Subtract</option>
-                <option value="*">Multiply</option>
-                <option value="/">Divide</option>
-            </select>
-            <label for="secondInput"></label>
-            <input type="number" name="secondInput" id="secondInput" class="operand">
-            <label for="calculate"></label>
-            <button class="button" id="calculate" name="calculate">=</button>
-            <label for="clear"></label>
-            <button class="button" id="clear" name=clear>C</button>
+        <section id="physicalCalc">
             <div id="resultContainer">
                 <!-- The result of the current calculation will be added here after a calculation is made -->
+            </div>
+            <label for="calcInput"></label>
+            <input type="text" name="calcInput" id="calcInput" class="inputEquation">
+            <label for="clear"></label>
+            <button class="button" id="clear" name=clear>C</button>
+            <div id="calcRow1">
+                <label for="7"></label>
+                <button type="submit" class="numInput" id="7">7</button>
+                <label for="8"></label>
+                <button type="submit" class="numInput" id="8">8</button>
+                <label for="9"></label>
+                <button type="submit" class="numInput" id="9">9</button>
+                <label for="+"></label>
+                <button type="submit" class="operatorInput" id="+">+</button>
+            </div>
+            <div id="calcRow2">
+                <label for="4"></label>
+                <button type="submit" class="numInput" id="4">4</button>
+                <label for="5"></label>
+                <button type="submit" class="numInput" id="5">5</button>
+                <label for="6"></label>
+                <button type="submit" class="numInput" id="6">6</button>
+                <label for="-"></label>
+                <button type="submit" class="operatorInput" id="-">-</button>
+            </div>
+            <div id="calcRow3">
+                <label for="1"></label>
+                <button type="submit" class="numInput" id="1">1</button>
+                <label for="2"></label>
+                <button type="submit" class="numInput" id="2">2</button>
+                <label for="3"></label>
+                <button type="submit" class="numInput" id="3">3</button>
+                <label for="*"></label>
+                <button type="submit" class="operatorInput" id="*">*</button>
+            </div>
+            <div id="calcRow4">
+                <label for="0"></label>
+                <button type="submit" class="numInput" id="0">0</button>
+                <label for="."></label>
+                <button type="submit" class="numInput" id=".">.</button>
+                <label for="calculate"></label>
+                <button class="button" id="calculate" name="calculate">=</button>
+                <label for="/"></label>
+                <button type="submit" class="operatorInput" id="/">/</button>
             </div>
         </section>
         <section>
