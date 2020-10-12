@@ -32,12 +32,14 @@ function onReady () {
         currentInput = $('#calcInput').val();
         $('#calcInput').val(currentInput+'.');
         $('.decimal').prop('disabled', true);
+        answerInCalc = false;
     });
 
     // This handles all the operator input buttons and adds the clicked item to the calculator input field.
     $('.operatorInput').on('click', button => {
 
         console.log(button.target.id, 'has been clicked!');
+        answerInCalc = false;
         let clickedOperator = button.target.id;
         getOperator(clickedOperator);
     });
@@ -52,6 +54,7 @@ function onReady () {
             alert('Please enter a full equation.');
         } else if (operator == '/' && rightOperand == 0) {
             alert("Please don't divide by 0. That's mega uncouth.");
+            $('#calcInput').val('');
         } else {
             calculate();
         }
@@ -181,9 +184,16 @@ function displayResult () {
         url: '/calc'
     }).then(response => {
         $('#calcInput').val(response.result);
+        // Check if the answer has a decimal already and disable it
+        for (char of response.result) {
+            if (char == '.'){
+                $('.decimal').prop('disabled', true);
+            }
+        }
     }).catch(error => {
         alert(error);
     });
+    
     answerInCalc = true;
 }
 
