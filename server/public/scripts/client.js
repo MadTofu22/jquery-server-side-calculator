@@ -5,7 +5,7 @@ $(onReady);
 let leftOperand = '';
 let rightOperand = '';
 let operator = '';
-let reranCalc = false;
+let answerInCalc = false;
 
 function onReady () {
 
@@ -19,9 +19,9 @@ function onReady () {
         
         console.log(button.target.id, 'has been clicked!');
         let number = button.target.id;
-        if (reranCalc){
+        if (answerInCalc){
             $('#calcInput').val('');
-            reranCalc = false;
+            answerInCalc = false;
         }
         currentInput = $('#calcInput').val();
         $('#calcInput').val(currentInput+number);
@@ -50,6 +50,8 @@ function onReady () {
 
         if (!leftOperand || !operator || !rightOperand) {
             alert('Please enter a full equation.');
+        } else if (operator == '/' && rightOperand == 0) {
+            alert("Please don't divide by 0. That's mega uncouth.");
         } else {
             calculate();
         }
@@ -93,7 +95,7 @@ function rerunCalc (id) {
     }).catch(error => {
         alert(error);
     });
-    reranCalc = true;
+    answerInCalc = true;
 }
 
 // This function handles the click event for the calculate button.
@@ -182,6 +184,7 @@ function displayResult () {
     }).catch(error => {
         alert(error);
     });
+    answerInCalc = true;
 }
 
 // This function updates the history of all calculation made.
