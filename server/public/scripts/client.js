@@ -22,6 +22,13 @@ function onReady () {
         $('#calcInput').val(currentInput+number);
     });
 
+    // Thhis handles the decimal button being pushed, and disables it until it's made reusable by other actions.
+    $('.decimal').on('click', button => {
+        currentInput = $('#calcInput').val();
+        $('#calcInput').val(currentInput+'.');
+        $('.decimal').prop('disabled', true);
+    });
+
     // This handles all the operator input buttons and adds the clicked item to the calculator input field.
     $('.operatorInput').on('click', button => {
 
@@ -31,7 +38,21 @@ function onReady () {
     });
 
     // This handles the click event for the submit button, =.
-    $('#calculate').on('click', calculate);
+    $('#calculate').on('click', () => {
+        
+        getRightOperand();
+        console.log('leftOperand', leftOperand, 'operator', operator, 'rightOperand', rightOperand);
+
+        if (!leftOperand) {
+            alert('Please enter a number before the operator and second number.');
+        } else if (!operator) {
+            alert('Please select and operator.');
+        } else if (!rightOperand) {
+            alert('Please enter a number after the operator.')
+        } else {
+            calculate();
+        }
+    });
 
     // This handles the click even for the clear input button.
     $('#clear').on('click', clear);
@@ -77,8 +98,6 @@ function calculate () {
     
     console.log('calculate button has been clicked');
 
-    getRightOperand();
-
     // Connect to the /calc route on the server
     $.ajax({
         method: 'POST',
@@ -111,6 +130,7 @@ function getOperator (clickedOperator) {
         leftOperand += currentInput;
         operator += clickedOperator;
         $('.operatorInput').prop('disabled', true);
+        $('.decimal').prop('disabled', false);
     }
 }
 
@@ -139,6 +159,10 @@ function clear () {
 
     console.log('clear input button had been clicked');
     $('#calcInput').val('');
+    leftOperand = '';
+    rightOperand = '';
+    operator = '';
+    $('button').prop('disabled', false);
 }
 
 // This function gets the latest calculation from the server.

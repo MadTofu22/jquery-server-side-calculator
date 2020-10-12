@@ -7,7 +7,7 @@ body {
     width: 154px;
 }
 
-.numInput, .operatorInput, .calcButton {
+.numInput, .operatorInput, .calcButton, .decimal {
     margin: 1px;
     width: 50px;
     height: 50px;
@@ -21,6 +21,10 @@ body {
 }
 
 #calcInput {
-    height: 36px;
+    height: 43px;
+    font-size: 20px;
+}
+
+ul {
     font-size: 20px;
 }

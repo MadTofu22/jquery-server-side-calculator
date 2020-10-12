@@ -28,16 +28,15 @@ Please follow these instructions if you would like to install this project for a
 Please follow this flow to use this application.
     
 1. Open your favorite browser and enter `localhost:5000` in the URL bar.
-2. Enter the first number in the left input field.
-3. Enter the second number in the right input field.
-4. Select an operation from the dropdown list in the middle of the two input fields.
-5. Click on the [=] button to submit the calculation.
-6. Observe the result below the input fields.
+2. Use the number buttons, and decimal point if needed, to enter the first number. The decimal point will become disabled after use to prevent an invalid input. After an operator is selected the decimal point becomes usable again.
+3. Click on one of the operator buttons to select the mathmatical operation you need. The operators buttons will become disabled after one is selected to prevent an invalid input.
+4. Use the number buttons, and decimal point if needed, to enter the second number. The decimal point will become disabled after use to prevent an invalid input.
+5. Use the = button to submit the calculation. Or use the C button to clear the input and start over.
+6. After submitting the calculation the equation will be removed and replaced with the answer and the history will be updated to show the last calculation.
+7. You can then use the answer in the next calulation or start over by using the C button.
 
-The results history will be displayed below the most recent result. This history is saved on the server. To clear the history you can:
+- At any point, you may click on a calculation in the history list to re-run that calculation. This will add it to the history again as if a new calculation was ran.
 
-- Select the [Clear] button.
-- Turn off the server by entering `Ctl+C` in your terminal.
 
 ## Built With
 This project was built using HTML, CSS, and JavaScript.
