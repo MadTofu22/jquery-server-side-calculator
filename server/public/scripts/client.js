@@ -40,6 +40,36 @@ function onReady () {
     $('#clearHistory').on('click', clearHistory);
 
     // This handles the click even for allowing the user to click an equation in the history and re-run it.
+    $('#historyList').on('click', 'li', button => {
+
+        console.log(button.target.id, 'has beenclicked.');
+        let calcID = button.target.id;
+        rerunCalc(calcID);
+    }); 
+}
+
+// This function parses the id for the history item clicked then reruns the calculation.
+function rerunCalc (id) {
+    
+    console.log('hello from rerunCalc(), id:', id);
+
+    // Get the server history index number by removing 'calc_' from the id.
+    let index = id.slice(5);
+
+    // Connect to the /rerun post route on the server
+    $.ajax({
+        method: 'POST',
+        url: '/rerun',
+        data: {
+            index
+        }
+    }).then(response => {
+        displayResult();
+        updateHistory();
+        resetCalculator();
+    }).catch(error => {
+        alert(error);
+    });
 }
 
 // This function handles the click event for the calculate button.
@@ -59,7 +89,6 @@ function calculate () {
             operator,
         }
     }).then(response => {
-        console.log('resonse from /calc', response);
         displayResult();
         updateHistory();
         resetCalculator();
@@ -142,7 +171,7 @@ function updateHistory () {
         $('#historyList').empty();
         for (let calculation of response) {
             $('#historyList').append(`
-                <li id="calc_${response.indexOf(calculation)}">${calculation.firstOperand} ${calculation.operator} ${calculation.secondOperand} = ${calculation.result}</li>`);
+                <li id="calc_${response.indexOf(calculation)}">${calculation.firstOperand} ${calculation.operator} ${calculation.secondOperand}</li>`);
         }
     }).catch(error => {
         alert(error);

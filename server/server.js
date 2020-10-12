@@ -42,5 +42,14 @@ app.post('/calc', (req, res) => {
     res.sendStatus(200);
     lastCalculation = calculate(req.body);
     calcHistory.push(lastCalculation);
-    console.log('hello from /calc post, response:', lastCalculation);
+    console.log('hello from /calc post, lastCalulation:', lastCalculation);
 });
+
+// This route takes an index from the client and gets a specific calculation from the history, then stores it as the last calculation to simulate re-running it.
+app.post('/rerun', (req, res) => {
+
+    res.sendStatus(200);
+    lastCalculation = calcHistory[req.body.index];
+    calcHistory.push(lastCalculation);
+    console.log('hello from /rerun post, lastCalculation:', lastCalculation);
+})
