@@ -53,3 +53,7 @@ app.post('/rerun', (req, res) => {
     calcHistory.push(lastCalculation);
     console.log('hello from /rerun post, lastCalculation:', lastCalculation);
 })
+
+app.get('/', (req, res) => {
+    res.sendStatus(200);
+});
