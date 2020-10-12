@@ -23,8 +23,8 @@ This is for planning the features this project needs and keeping track of what h
 
 ## Stretch Features:
 
-* [ ] Change display to look like a physical calculator
-* [ ] Data Validation
+* [X] Change display to look like a physical calculator
+* [X] Data Validation
 * [ ] Clear history button, DELETE
 * [ ] Click history to re-run calculation
 * [ ] Deploy to Heroku
