@@ -43,12 +43,8 @@ function onReady () {
         getRightOperand();
         console.log('leftOperand', leftOperand, 'operator', operator, 'rightOperand', rightOperand);
 
-        if (!leftOperand) {
-            alert('Please enter a number before the operator and second number.');
-        } else if (!operator) {
-            alert('Please select and operator.');
-        } else if (!rightOperand) {
-            alert('Please enter a number after the operator.')
+        if (!leftOperand || !operator || !rightOperand) {
+            alert('Please enter a full equation.');
         } else {
             calculate();
         }
@@ -64,6 +60,7 @@ function onReady () {
     $('#historyList').on('click', 'li', button => {
 
         console.log(button.target.id, 'has beenclicked.');
+        leftOperand = $('#calcInput').val();
         let calcID = button.target.id;
         rerunCalc(calcID);
     }); 
