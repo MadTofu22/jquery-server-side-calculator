@@ -112,14 +112,6 @@ function clear () {
     $('#calcInput').val('');
 }
 
-// This function displays the result of the current calculation.
-function addResultToDom (result) {
-
-    console.log('hello from displayResult()');
-    $('#resultContainer').empty();
-    $('#resultContainer').append(`<h2>${result}</h2>`);
-}
-
 // This function gets the latest calculation from the server.
 function displayResult () {
 
@@ -130,7 +122,7 @@ function displayResult () {
         method: 'GET',
         url: '/calc'
     }).then(response => {
-        addResultToDom(response.result);
+        $('#calcInput').val(response.result);
     }).catch(error => {
         alert(error);
     });

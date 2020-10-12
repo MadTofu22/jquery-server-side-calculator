@@ -26,6 +26,7 @@ app.delete('/history', (req, res) => {
 
     console.log('hello from /history delete');
     calcHistory = [];
+    res.sendStatus(200);
 });
 
 // This route allows the user see the answer of the most recent calculation
