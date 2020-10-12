@@ -26,18 +26,7 @@ function onReady () {
 
         console.log(button.target.id, 'has been clicked!');
         let clickedOperator = button.target.id;
-        currentInput = $('#calcInput').val();
-
-        // Check to ensure a number has been entered before the operator, if not clear the invalid input then alert the user. If the input is valid, add the operator to the input display and disable the operator buttons. Store the left operand and operator to global variables.
-        if (currentInput === ''){
-            $('#calcInput').val('');
-            alert('Please enter a number before an operator.')
-        } else {
-            $('#calcInput').val(currentInput+clickedOperator);
-            leftOperand += currentInput;
-            operator += clickedOperator;
-            $('.operatorInput').prop('disabled', true);
-        }
+        getOperator(clickedOperator);
     });
 
     $('#calculate').on('click', calculate);
@@ -49,7 +38,7 @@ function calculate () {
     
     console.log('calculate button has been clicked');
 
-    // Find the index op the operator that was input and store the number after it to the rightOperator variable.
+    getRightOperand();
 
     // Connect to the /calc route on the server
     $.ajax({
@@ -70,7 +59,42 @@ function calculate () {
     });
 }
 
-// This function 
+// This function gets the operator from the input display.
+function getOperator (clickedOperator) {
+    
+    currentInput = $('#calcInput').val();
+
+    // Check to ensure a number has been entered before the operator, if not clear the invalid input then alert the user.
+    if (currentInput === ''){
+        $('#calcInput').val('');
+        alert('Please enter a number before an operator.')
+    } else {
+        $('#calcInput').val(currentInput+clickedOperator);
+        leftOperand += currentInput;
+        operator += clickedOperator;
+        $('.operatorInput').prop('disabled', true);
+    }
+}
+
+// This function finds the index op the operator that was input and store the number after it to the rightOperator variable.
+function getRightOperand () {
+
+    console.log('hello from getRightOperand()');
+    let inputString = $('#calcInput').val();
+    let start = inputString.indexOf(operator)+1;
+    rightOperand += inputString.slice(start, inputString.length);
+}
+
+// This function clears global variables and resets the disabled operator buttons and input display.
+function resetCalculator () {
+    
+    console.log('hello from resetCalculator()');
+    $('.operatorInput').prop('disabled', false);
+    $('#calcInput').val('');
+    leftOperand = '';
+    rightOperand = '';
+    operator = '';
+}
 
 // This function handles the click event for the clear input button.
 function clear () {
@@ -124,36 +148,4 @@ function updateHistory () {
     }).catch(error => {
         alert(error);
     });
-}
-
-// This function takes the calculator input string and parses it for the left operand.
-function parseLeft (inputString) {
-    
-    console.log('hello from parseLeft()');
-    let operandString = '';
-    let operatorFound = false;
-
-    // Iterate through the characters in the input string and store the number that comes before the operator into the operand string.
-    do {
-        let index = 0;
-        // Check if the current character is a math operator
-        if (inputString[index] === '+' || inputString[index] === '-' || inputString[index] === '*' || inputString[index] === '/') {
-            operatorFound = true;
-        } else {
-            console.log('inputString[index]', inputString[index]);
-            operandString += inputString[index];
-        }
-    } while (!operatorFound);
-    console.log('operatandString:', operandString);
-    return operandString;
-}
-
-function parseRight (inputString) {
-
-    console.log('hello from parseRight()');
-}
-
-function parseOperator (inputString) {
-    
-    console.log('hello from parseOperator()');
 }
