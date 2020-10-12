@@ -1,24 +1,47 @@
 console.log('client.js has been loaded');
 $(onReady);
 
+// Define global variable.
+let leftOperand = '';
+let rightOperand = '';
+let operator = '';
+
 function onReady () {
 
     console.log('jquery.js has been loaded');
     
     updateHistory();
+    
+    // This handles all of the numbers, and decimal point, and adds the clicked item to the calculaor input field.
     $('.numInput').on('click', button => {
         
-        console.log('ive been clicked! ID:', button.target.id);
-        let id = button.target.id;
-    })
+        console.log(button.target.id, 'has been clicked!');
+        let number = button.target.id;
+        currentInput = $('#calcInput').val();
+        $('#calcInput').val(currentInput+number);
+    });
+
+    // This handles all the operator input buttons and adds the clicked item to the calculator input field.
+    $('.operatorInput').on('click', button => {
+
+        console.log(button.target.id, 'has been clicked!');
+        let clickedOperator = button.target.id;
+        currentInput = $('#calcInput').val();
+
+        // Check to ensure a number has been entered before the operator, if not clear the invalid input then alert the user. If the input is valid, add the operator to the input display and disable the operator buttons. Store the left operand and operator to global variables.
+        if (currentInput === ''){
+            $('#calcInput').val('');
+            alert('Please enter a number before an operator.')
+        } else {
+            $('#calcInput').val(currentInput+clickedOperator);
+            leftOperand += currentInput;
+            operator += clickedOperator;
+            $('.operatorInput').prop('disabled', true);
+        }
+    });
+
     $('#calculate').on('click', calculate);
     $('#clear').on('click', clear);
-}
-
-// This function handles adding a number to the input field when a number is clicked.
-function addNumber (buttonID) {
-
-    console.log('hello from addNumber(), buttonID:', buttonID);
 }
 
 // This function handles the click event for the calculate button.
@@ -26,9 +49,7 @@ function calculate () {
     
     console.log('calculate button has been clicked');
 
-    // let leftOperand = parseLeft($('#calcInput').val());
-    // let rightOperand = parseRight($('#calcInput').val());
-    // let operator = parseOperator($('#calcInput').val());
+    // Find the index op the operator that was input and store the number after it to the rightOperator variable.
 
     // Connect to the /calc route on the server
     $.ajax({
@@ -43,16 +64,21 @@ function calculate () {
         console.log('resonse from /calc', response);
         displayResult();
         updateHistory();
+        resetCalculator();
     }).catch(error => {
         alert(error);
     });
 }
 
+// This function 
+
 // This function handles the click event for the clear input button.
 function clear () {
 
     console.log('clear input button had been clicked');
-    $('.operand').val('');
+    $('#calcInput').val('');
+
+    // Add DELETE request to remove the history.
 }
 
 // This function displays the result of the current calculation.
@@ -100,8 +126,7 @@ function updateHistory () {
     });
 }
 
-
-
+// This function takes the calculator input string and parses it for the left operand.
 function parseLeft (inputString) {
     
     console.log('hello from parseLeft()');
